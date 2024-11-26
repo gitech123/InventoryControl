@@ -1,0 +1,5 @@
+/* INDEX.html */
+.index-bg {
+    position: absolute;
+    z-index: -1;
+}

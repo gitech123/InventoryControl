@@ -1,0 +1,17 @@
+{
+    "name": "gavana/sparman_fix",
+    "description": "Inventory Control",
+    "autoload": {
+        "psr-4": {
+            "Gavana\\SparmanFix\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gilang"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^2.1"
+    }
+}

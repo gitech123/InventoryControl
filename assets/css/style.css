@@ -1,0 +1,24 @@
+* {
+    font-size: 12px;
+}
+
+.button-primary {
+    background-color: #64e9f5;
+    border: 1px solid #58c9d5;
+    padding: 5px;
+}
+
+#item_table_info, .dt-search label {
+    color: #fff;
+}
+
+.menu-icon {
+    width: 65px;
+    height: 60px;
+}
+
+.toolbar {
+    position: relative;
+    top: 80px;
+    left: 100px;
+}

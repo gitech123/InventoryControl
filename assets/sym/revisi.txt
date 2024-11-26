@@ -1,0 +1,28 @@
+1. Latar Belakang => Definisi / Penjelasan kenapa kita memilih projek ini v
+		  => Current Situation => Muncullah Problem => Peluang v
+		  => Tuntutan Industri, Target peningkatan (Penurunan Downtime) v
+
+2. Rajin => Sebuah review dari hasil pelaksanaan system
+
+3. Flowchart sistem di ganti => Flowchart solusi v
+
+4. Before After di implementasi Tahap 1 => Foto sparepart dan timbel v
+
+5. Layout Visio Before After v
+
+6. Tahap 1 dijadikan background v
+
+7. Foto Before After Penataan di implementasi solusi v
+
+8. Tahap 2 diganti menjadi step dan proses berjalan != list vv
+
+9. Dibuatkan step step operasional system 
+	mempercepat =?
+
+10. proof MTTR di pindah keatas v
+
+11. Detail metodologi tahap 2 implementasi solusi v
+
+12. Implementasi solusi (RINGKAS) => Repair Berulang > Beli baru 
+
+13. WHY WHY v
