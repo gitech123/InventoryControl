@@ -4,8 +4,7 @@ require "authMiddleware.php";
 $sqlSelect = "SELECT * FROM part_repairable ";
 $result    = $conn->query($sqlSelect);
 
-// Cek role user
-$userRole = $_SESSION['role'];
+
 ?>
 
 <html>
@@ -199,6 +198,11 @@ $userRole = $_SESSION['role'];
                                     class="form-control form-control-sm">
                             </div>
                             <div class="col-4 mb-2">
+                                <label class="fw-semibold mb-1">PIC</label>
+                                <input type="text" id="tambah_satuan" name="pic"
+                                    class="form-control form-control-sm">
+                            </div>
+                            <div class="col-4 mb-2">
                                 <label class="fw-semibold mb-1">Keterangan Pengajuan Disposisi</label>
                                 <input type="text" id="tambah_disposisi" name="disposisi"
                                     class="form-control form-control-sm">
@@ -228,7 +232,7 @@ $userRole = $_SESSION['role'];
     <script>
     function showEdit(data) {
         var modalEl = $("#form_barang_modal");
-        // $(`input[name='id']`).val(data['id']); // Gunakan id untuk barang
+         $(`input[name='id']`).val(data['id']); // Gunakan id untuk barang
         $(`input[name='nama_barang']`).val(data['Nama_Barang']); // Ganti ke input
         $(`input[name='kode_lokasi']`).val(data['Kode_lokasi']); // Ganti ke input
         $(`input[name='area_penyimpanan']`).val(data['Area_Penyimpanan']); // Ganti ke input

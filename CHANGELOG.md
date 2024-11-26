@@ -14,8 +14,10 @@ V2.2
 - Penambahan Fitur Input Barang Bekas Otomatis dari SPP 
 - Penambahan Fitur Pending barang bekas
 - Penambahan FItur Input barang bekas dari checklist History Out
-## [2.3]
-### Added
+## [2.3] 26/11/2024
+### Added 
 - Penambahan Fitur Export di Dashboard
+- Penambahan fitur tambah barang di Dashboard barang repair
+- Penambahan fitur tambah jumlah di Dashboard Barang Repair
 ### Changed
 - Menghapus Input tanggal di Menu Export Dashboard
