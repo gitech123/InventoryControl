@@ -13,7 +13,7 @@ if (isset($_GET['filter']) && $_GET['filter'] == 'stock') {
 $result    = $conn->query($sqlSelect);
 
 // Cek role user
-$userRole = $_SESSION['role'];
+$userRole = $_SESSION["role"];
 ?>
 
 <html>
@@ -104,12 +104,11 @@ $userRole = $_SESSION['role'];
         <a href="content.php">
             <img src="assets/images/menu-icon.png" alt="" class="menu-icon me-3">
         </a>
-        <input type="text" id="start_date" placeholder="Start Date" class="form-control d-inline w-auto">
-        <input type="text" id="end_date" placeholder="End Date" class="form-control d-inline w-auto">
         <select style="margin: 0px" class="form-control d-inline w-auto" id="kategori">
-                                <option value="Non Stock">Non Stock</option>
-                                <option value="Stock">Stock</option>
-                            </select>
+            <option value="">Semua</option>
+            <option value="Non Stock">Non Stock</option>
+            <option value="Stock">Stock</option>
+        </select>
         <button id="exportBtn" class="btn btn-primary">Export</button>
         <?php if ($user['role'] === 'adminMTC' || $user['username'] == 'gilang'): ?>
             <form method="GET"  id="filterForm" action=""
@@ -256,15 +255,8 @@ $userRole = $_SESSION['role'];
         $("#main-content").show();
         $('#item_table').DataTable();
         $("#exportBtn").on("click", function() {
-            var startDate = $("#start_date").val();
-            var endDate = $("#end_date").val();
             var kategori = $("#kategori").val(); // Mengambil nilai dari kolom input "item"
-
-            if (startDate && endDate) {
-                window.location.href = "export.php?start_date=" + startDate + "&end_date=" + endDate + "&kategori=" + kategori;
-            } else {
-                alert("Please select both start and end date");
-            }
+             window.location.href = "Export_dashboard.php?kategori="+ kategori;
         });
     });
 
