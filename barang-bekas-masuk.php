@@ -68,6 +68,7 @@ $result = $conn->query($sql);
                     <th class="text-warning">No</th>
                     <th class="text-warning">Area Penyimpanan</th>
                     <th class="text-warning">Kode Lokasi</th>
+                    <th class="text-warning">Tanggal Penerimaan</th>
                     <th class="text-warning">Kategori</th>
                     <th class="text-warning">Nama Barang</th>
                     <th class="text-warning">Jml</th>
@@ -85,6 +86,7 @@ $result = $conn->query($sql);
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $row['Area Penyimpanan']; ?></td>
                     <td><?php echo $row['Kode Lokasi']; ?></td>
+                    <td><?php echo $row['Tanggal']; ?></td>
                     <td><?php echo $row['Kategori']; ?></td>
                     <td><?php echo $row['Nama Barang']; ?></td>
                     <td><?php echo $row['Jml']; ?></td>
