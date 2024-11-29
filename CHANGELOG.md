@@ -21,3 +21,6 @@ V2.2
 - Penambahan fitur tambah jumlah di Dashboard Barang Repair
 ### Changed
 - Menghapus Input tanggal di Menu Export Dashboard
+## [2.4] 29/11/2024
+### Fixed
+- Bug Fix terkait export barang bekas masuk dan barang bekas keluar

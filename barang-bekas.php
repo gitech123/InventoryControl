@@ -359,7 +359,7 @@ $userRole = $_SESSION['role'];
         $("#main-content").show();
         $('#item_table').DataTable(); //bootstrap untuk search
         flatpickr("#tambah_tanggal", {
-            dateFormat: "Y/m/d",
+            dateFormat: "Y-m-d",
             defaultDate: "today"
         });
     });

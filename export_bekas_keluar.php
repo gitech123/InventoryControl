@@ -24,14 +24,12 @@ $endYear = $endDateTime->format("Y");      // Output: "2024"
 if ($item != "") {
     $sqlSelect = "SELECT * FROM barang_bekas_keluar
     WHERE 
-    LPAD(barang_bekas_keluar.Bulan, 2, '0') BETWEEN LPAD('$startMonth', 2, '0') AND LPAD('$endMonth', 2, '0') 
-    AND barang_bekas_keluar.Tahun BETWEEN '$startYear' AND '$endYear'
+    barang_bekas_keluar.tanggal_pengeluaran BETWEEN '$startDate' AND '$endDate'
     AND Nama_Barang LIKE '%$item%'";
 } else {
-    $sqlSelect = "SELECT * FROM barang_bekas_keluar 
+    $sqlSelect = "SELECT * FROM barang_bekas_keluar
     WHERE 
-    LPAD(barang_bekas_keluar.Bulan, 2, '0') BETWEEN LPAD('$startMonth', 2, '0') AND LPAD('$endMonth', 2, '0') 
-    AND barang_bekas_keluar.Tahun BETWEEN '$startYear' AND '$endYear'";
+    barang_bekas_keluar.tanggal_pengeluaran BETWEEN '$startDate' AND '$endDate'";
 }
 
 

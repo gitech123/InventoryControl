@@ -24,14 +24,12 @@ $endYear = $endDateTime->format("Y");      // Output: "2024"
 if ($item != "") {
     $sqlSelect = "SELECT * FROM barang_bekas_masuk 
     WHERE 
-    LPAD(barang_bekas_masuk.Bulan, 2, '0') BETWEEN LPAD('$startMonth', 2, '0') AND LPAD('$endMonth', 2, '0') 
-    AND barang_bekas_masuk.Tahun BETWEEN '$startYear' AND '$endYear'
-    AND Nama_Barang LIKE '%$item%'";
+    barang_bekas_masuk.Tanggal BETWEEN '$startDate' AND '$endDate'
+    AND 'Nama Barang' LIKE '%$item%'";
 } else {
     $sqlSelect = "SELECT * FROM barang_bekas_masuk 
     WHERE 
-    LPAD(barang_bekas_masuk.Bulan, 2, '0') BETWEEN LPAD('$startMonth', 2, '0') AND LPAD('$endMonth', 2, '0') 
-    AND barang_bekas_masuk.Tahun BETWEEN '$startYear' AND '$endYear'";
+    barang_bekas_masuk.Tanggal BETWEEN '$startDate' AND '$endDate'";
 }
 
 
@@ -46,13 +44,14 @@ $sheet = $spreadsheet->getActiveSheet();
 $sheet->setCellValue('A1', "Data Di Ambil Tanggal: $tanggalexport");
 $sheet->setCellValue('A2', 'Area Penyimpanan')
       ->setCellValue('B2', 'Kode Lokasi')
-      ->setCellValue('C2', 'Kategori')
-      ->setCellValue('D2', 'Nama Barang')
-      ->setCellValue('E2', 'Jml')
-      ->setCellValue('F2', 'Uom')
-      ->setCellValue('G2', 'No SPB')
-      ->setCellValue('H2', 'Bulan')
-      ->setCellValue('I2', 'Tahun');
+      ->setCellValue('C2', 'Tanggal Penerimaan')
+      ->setCellValue('D2', 'Kategori')
+      ->setCellValue('E2', 'Nama Barang')
+      ->setCellValue('F2', 'Jml')
+      ->setCellValue('G2', 'Uom')
+      ->setCellValue('H2', 'No SPB')
+      ->setCellValue('I2', 'Bulan')
+      ->setCellValue('J2', 'Tahun');
 
 // Menambahkan data dari database ke dalam file Excel
 if ($result->num_rows > 0) {
@@ -60,13 +59,14 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $sheet->setCellValue("A$rowIndex", $row['Area Penyimpanan']) // Pastikan nama kolom sesuai
               ->setCellValue("B$rowIndex", $row['Kode Lokasi'])
-              ->setCellValue("C$rowIndex", $row['Kategori'])
-              ->setCellValue("D$rowIndex", $row['Nama Barang'])
-              ->setCellValue("E$rowIndex", $row['Jml'])
-              ->setCellValue("F$rowIndex", $row['Uom'])
-              ->setCellValue("G$rowIndex", $row['No SPB'])
-              ->setCellValue("H$rowIndex", $row['Bulan'])
-              ->setCellValue("I$rowIndex", $row['Tahun']);
+              ->setCellValue("C$rowIndex", $row['Tanggal'])
+              ->setCellValue("D$rowIndex", $row['Kategori'])
+              ->setCellValue("E$rowIndex", $row['Nama Barang'])
+              ->setCellValue("F$rowIndex", $row['Jml'])
+              ->setCellValue("G$rowIndex", $row['Uom'])
+              ->setCellValue("H$rowIndex", $row['No SPB'])
+              ->setCellValue("I$rowIndex", $row['Bulan'])
+              ->setCellValue("J$rowIndex", $row['Tahun']);
         $rowIndex++;
     }
 }
@@ -84,8 +84,8 @@ $headerStyle = [
         'startColor' => ['argb' => $yellowColor], // Warna kuning
     ],
 ];
-$spreadsheet->getActiveSheet()->getStyle('A2:I2')->applyFromArray($headerStyle);
-foreach(range('A','I') as $columnID) {
+$spreadsheet->getActiveSheet()->getStyle('A2:J2')->applyFromArray($headerStyle);
+foreach(range('A','J') as $columnID) {
     $spreadsheet->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
 }
 // Membuat nama file
