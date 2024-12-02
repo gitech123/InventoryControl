@@ -1,4 +1,6 @@
 <?php
+
+use PhpOffice\PhpSpreadsheet\Calculation\Information\Value;
 require "authMiddleware.php";
 
 // Mengambil id_barang dari tabel simpan_id_sementara
@@ -56,7 +58,7 @@ if ($barangcat->num_rows > 0) {
     $resultNoSPB = $conn->query($sqlNoSPB);
 
     // Ambil hasil query
-    $no_spb = 'Belum Ada SPB';
+    $no_spb = $row['no_spb'] ?? 0;
     if ($resultNoSPB->num_rows > 0) {
         $rowNoSPB = $resultNoSPB->fetch_assoc();
         $no_spb = $rowNoSPB['no_spb'];
@@ -128,7 +130,7 @@ if ($barangcat->num_rows > 0) {
                         <?php endif; ?>
                         <?php if($kategoricat === "Non Stock") :?>
                         <td colspan="4">NO SPB :
-                            GSP/<?php echo $no_spb+1; ?>/<?php echo $bulan_spb; ?>/<?php echo $tahun_spb; ?>/NS</td>
+                            GSP/<?php  if ($no_spb > 0){echo $no_spb+1; } else {echo $no_spb = 1; }  ?>/<?php echo $bulan_spb; ?>/<?php echo $tahun_spb; ?>/NS</td>
                         <?php endif; ?>
                     </tr>
                     <tr>
@@ -162,7 +164,7 @@ if ($barangcat->num_rows > 0) {
                     </tr>
                     <?php $no = 1; ?>
                     <?php while ($row = $barang->fetch_assoc()): ?>
-                    <tr>
+                    <tr> 
                         <td class="text-center"><?php echo $no++ ?></td>
                         <td colspan="4"><?php echo $row["nama_barang"] ?></td>
                         <td></td>
@@ -184,6 +186,12 @@ if ($barangcat->num_rows > 0) {
                             <input style="margin: 0px" type="number" class="form-control"
                                 name="jumlah[<?php echo $row['id'] ?>]" max="<?php echo $row['jumlah']; ?>">
                         </td>
+                        <?php $sqlkodelokasi = "SELECT kode_lokasi FROM mutasi_part_bekas WHERE Nama_Barang = '" . $row["nama_barang"] . "'"; 
+                                $sql = $conn->query($sqlkodelokasi); 
+                                if ($sql->num_rows > 0) {
+                                $kodelokasibekas = $sql->fetch_assoc();
+                                $kode_lokasi = $kodelokasibekas['kode_lokasi'];
+                                }?>
                         <td>
                             <label for="Ada[]">Sudah Kembali</label>
                             <input style="align-items: center; align-self: center; align-content:center;"
@@ -194,7 +202,7 @@ if ($barangcat->num_rows > 0) {
                         </td>
                         <td colspan="2" style="width: 70px; margin: 0px">
                             <input style="margin: 0px" type="text" class="form-control"
-                                name="kode_lokasi[<?php echo $row['id'] ?>]" id="kode_lokasi_<?php echo $row['id'] ?>"
+                                name="kode_lokasi[<?php echo $row['id'] ?>]" value="<?php echo $kode_lokasi; ?>" id="kode_lokasi_<?php echo $row['id']?>"
                                 disabled>
                         </td>
 
