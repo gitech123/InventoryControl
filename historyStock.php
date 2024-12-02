@@ -111,7 +111,7 @@ $result = $conn->query($sql);
                         <td><?php echo $row['jumlah']; ?></td>
                         <td><?php echo $row['jumlah_akhir']; ?></td>
                         <td><?php echo $row['tgl']; ?></td>
-                        <?php if ($user["role"] == "admin" || $user['username'] == 'gilang' || $user['role'] == 'supervisorWarehouse'): ?>
+                        <?php if ($user["role"] == "admin" || $user['role'] == 'superuser' || $user['role'] == 'supervisorWarehouse'): ?>
                             <td class=" text-start">
                                 <div class="d-flex">
                                     <a class="btn btn-outline-danger mb-2" href="hapusHistory.php?id=

@@ -24,3 +24,11 @@ V2.2
 ## [2.4] 29/11/2024
 ### Fixed
 - Bug Fix terkait export barang bekas masuk dan barang bekas keluar
+## [2.5] 02/12/2024
+### Added
+- Fitur Input Kode Lokasi Otomatis
+- Fitur Log untuk setiap perubahan yang dilakukan oleh user
+- Fitur Edit Jumlah Barang Bekas yang masuk
+### Fixed 
+- Perbaikan Error di Halaman SPB karena no spb pertama di bulan ini.
+ 

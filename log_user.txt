@@ -1,0 +1,6 @@
+###  Perubahan di Halaman Edit SPB Barang Bekas Masuk
+[2024-12-02 15:15:50] Mutasi Barang Bekas Berubah UPDATE `mutasi_part_bekas` - Nama_Barang: THERMOCOUPLE TYPE J GNRD DIA 4X25/30CM, Saldo_Akhir: 10 -> 11, Masuk: 7 -> 8
+[2024-12-02 15:15:50] Jumlah Barang Masuk Berubah UPDATE `barang_bekas_masuk` - Nama_Barang: THERMOCOUPLE TYPE J GNRD DIA 4X25/30CM, Jumlah: 2
+###  Perubahan di Halaman Edit SPB Barang Bekas Masuk
+[2024-12-02 15:15:59] Mutasi Barang Bekas Berubah UPDATE `mutasi_part_bekas` - Nama_Barang: THERMOCOUPLE TYPE J GNRD DIA 4X25/30CM, Saldo_Akhir: 11 -> 10, Masuk: 8 -> 7
+[2024-12-02 15:15:59] Jumlah Barang Masuk Berubah UPDATE `barang_bekas_masuk` - Nama_Barang: THERMOCOUPLE TYPE J GNRD DIA 4X25/30CM, Jumlah: 1

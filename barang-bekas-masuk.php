@@ -3,6 +3,7 @@ require "authMiddleware.php";
 require 'vendor/autoload.php';
 
 $sql = "SELECT
+    id,
     `Area Penyimpanan`,
     `Kode Lokasi`,
     Kategori,
@@ -76,6 +77,7 @@ $result = $conn->query($sql);
                     <th class="text-warning">No SPB</th>
                     <th class="text-warning">Bulan</th>
                     <th class="text-warning">Tahun</th>
+                    <th class="text-warning">Edit</th>
                 </tr>
             </thead>
             <tbody class="text-center fw-semibold">
@@ -94,17 +96,113 @@ $result = $conn->query($sql);
                     <td><?php echo $row['No SPB']; ?></td>
                     <td><?php echo $row['Bulan']; ?></td>
                     <td><?php echo $row['Tahun']; ?></td>
+                    <?php if ($user["role"] == "admin" || $user["role"] == 'superuser' || $user['username'] == 'gilang' || $user['role'] == 'supervisorWarehouse'): ?>
+                            <td class=" text-start">
+                                <div class="d-flex">                   
+                                    <button class="btn btn-outline-warning mb-2" style="line-height: 0.5em" onclick='showEdit(<?php echo json_encode($row) ?>)'>Edit&nbsp;Jumlah
+                                    </button>&nbsp
+                                </div>
+                                <div class="d-flex">                   
+                                    <button class="btn btn-outline-danger mb-2" style="line-height: 0.5em" onclick='showEditNo(<?php echo json_encode($row) ?>)'>Edit&nbsp;No&nbsp;SPB
+                                    </button>&nbsp
+                                </div>
+                            </td>
+                            <?php endif ?>
                 </tr>
                 <?php endwhile; ?>
                 <?php endif; ?>
             </tbody>
         </table>
     </div>
+    <div class="modal fade" id="stock_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="EditSPBBekas.php" method="POST" id="form_stock">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="form_barang_modal_title">Edit SPB</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id">
+                    <div class="row">
+                        <div class="col-12 mb-2">
+                            <label class="fw-semibold mb-1">Nama Barang</label>
+                            <textarea name="nama_barang" class="form-control" rows="3" disabled></textarea>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label class="fw-semibold mb-1">Jumlah Awal</label>
+                            <input type="text" name="jumlah_awal" class="form-control form-control-sm" disabled>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label class="fw-semibold mb-1">Jumlah Akhir</label>
+                            <input type="text" name="jumlah" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Simpan" onclick="return confirm('Apakah anda yakin ingin mengubah data tersebut?');">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="nospb_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="EditNoSPBBekas.php" method="POST" id="form_stock">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="form_barang_modal_title">Edit No SPB</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id">
+                    <div class="row">
+                        <div class="col-12 mb-2">
+                            <label class="fw-semibold mb-1">Nama Barang</label>
+                            <textarea name="nama_barang" class="form-control" rows="3" disabled></textarea>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label class="fw-semibold mb-1">SPB Awal</label>
+                            <input type="text" name="no_awal" class="form-control form-control-sm" disabled>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label class="fw-semibold mb-1">SPB Akhir</label>
+                            <input type="text" name="no" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Simpan">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
     <script src="assets/js/bootstrap.bundle.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="plugins/DataTables/datatables.min.js"></script>
     <script src="assets/js/flatpickr.min.js"></script>
     <script>
+        function showEdit(data) {
+        var modalEl = $("#stock_modal");
+
+        $(`input[name='id']`).val(data['id']);
+        $(`textarea[name='nama_barang']`).val(data['Nama Barang']);
+        $(`input[name='jumlah_awal']`).val(data['Jml']);
+
+        modalEl.modal('show');
+    }
+    function showEditNo(data) {
+        var modalEl = $("#nospb_modal");
+
+        $(`input[name='id']`).val(data['id']);
+        $(`textarea[name='nama_barang']`).val(data['Nama Barang']);
+        $(`input[name='no_awal']`).val(data['No SPB']);
+
+        modalEl.modal('show');
+    }
     $(document).ready(function() {
         $('#item_table').DataTable();
         flatpickr("#start_date", {
