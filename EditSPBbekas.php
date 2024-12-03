@@ -6,8 +6,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ID = $_POST["id"];
     $jumlah = $_POST["jumlah"];
     $tgl = date("Y-m-d");
-    $log = "###  Perubahan di Halaman Edit SPB Barang Bekas Masuk\n"; // Variabel untuk mencatat log
-
+    $log = "#################################  Perubahan di Halaman Edit SPB Barang Bekas Masuk  #################################################\n"; // Variabel untuk mencatat log
+    $log .= $Id . " ";
+    $log .= "Diubah Oleh ";
+    $log .= $user["username"];
+    $log .= "\n";
     // Ambil data barang dari tabel `barang_bekas_masuk`
     $sqlBarang = "SELECT * FROM barang_bekas_masuk WHERE id = ?";
     $stmt = $conn->prepare($sqlBarang);

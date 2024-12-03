@@ -164,7 +164,7 @@ $result = $conn->query($sql);
                         </div>
                         <div class="col-12 mb-2">
                             <label class="fw-semibold mb-1">SPB Awal</label>
-                            <input type="text" name="no_awal" class="form-control form-control-sm" disabled>
+                            <input type="text" name="no_awal" class="form-control form-control-sm">
                         </div>
                         <div class="col-12 mb-2">
                             <label class="fw-semibold mb-1">SPB Akhir</label>
